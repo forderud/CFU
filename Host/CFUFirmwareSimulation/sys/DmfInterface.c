@@ -83,26 +83,6 @@ g_CfuVirtualHid_HidReportDescriptor[] =
     0xC0                                // END_COLLECTION()
 };
 
-// HID Device Descriptor to expose dmf PlatformPolicyManager as a virtual HID device.
-//
-static
-const
-HID_DESCRIPTOR
-g_CfuVirtualHid_HidDescriptor =
-{
-    0x09,     // Length of HID descriptor
-    0x21,     // Descriptor type == HID  0x21
-    0x0100,   // HID spec release
-    0x00,     // Country code == English
-    0x01,     // Number of HID class descriptors
-    {
-        0x22,   // Descriptor type
-        // Total length of report descriptor.
-        //
-        (USHORT) sizeof(g_CfuVirtualHid_HidReportDescriptor)
-    }
-};
-
 
 DRIVER_INITIALIZE DriverEntry;
 EVT_WDF_DRIVER_DEVICE_ADD CfuVirtualHidEvtDeviceAdd;
@@ -353,8 +333,6 @@ Return:
     virtualHidDeviceModuleConfig.ProductId = PRODUCT_ID;
     virtualHidDeviceModuleConfig.VersionNumber = 0x0001;
 
-    virtualHidDeviceModuleConfig.HidDescriptor = &g_CfuVirtualHid_HidDescriptor;
-    virtualHidDeviceModuleConfig.HidDescriptorLength = sizeof(g_CfuVirtualHid_HidDescriptor);
     virtualHidDeviceModuleConfig.HidReportDescriptor = g_CfuVirtualHid_HidReportDescriptor;
     virtualHidDeviceModuleConfig.HidReportDescriptorLength = sizeof(g_CfuVirtualHid_HidReportDescriptor);
 
