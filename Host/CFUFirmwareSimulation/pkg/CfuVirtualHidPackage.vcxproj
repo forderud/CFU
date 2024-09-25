@@ -87,11 +87,25 @@
     <DriverSign>
       <FileDigestAlgorithm>SHA256</FileDigestAlgorithm>
     </DriverSign>
+    <PostBuildEvent>
+      <Command>mkdir $(PackageDir)
+copy *.bat $(PackageDir)
+copy "C:\Program Files (x86)\Windows Kits\10\tools\$(WDKBuildFolder)\x64\devcon.exe" $(PackageDir)
+copy "C:\Program Files (x86)\Windows Kits\10\tools\$(WDKBuildFolder)\$(Platform)\traceview.exe" $(PackageDir)
+copy $(OutDir)\CfuVirtualHid.cer $(PackageDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DriverSign>
       <FileDigestAlgorithm>SHA256</FileDigestAlgorithm>
     </DriverSign>
+    <PostBuildEvent>
+      <Command>mkdir $(PackageDir)
+copy *.bat $(PackageDir)
+copy "C:\Program Files (x86)\Windows Kits\10\tools\$(WDKBuildFolder)\x64\devcon.exe" $(PackageDir)
+copy "C:\Program Files (x86)\Windows Kits\10\tools\$(WDKBuildFolder)\$(Platform)\traceview.exe" $(PackageDir)
+copy $(OutDir)\CfuVirtualHid.cer $(PackageDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <DriverSign>
