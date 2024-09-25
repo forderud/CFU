@@ -455,48 +455,57 @@ Return Value:
         if (StringUtil::comparecsi(tag, "VID"))
         {
             ProtocolSettings.Vid = static_cast<UINT16>(strtoul(value, NULL, 16));
+            wprintf(L"Setting Vid=0x%x\n", ProtocolSettings.Vid);
         }
         else if (StringUtil::comparecsi(tag, "PID"))
         {
             ProtocolSettings.Pid = static_cast<UINT16>(strtoul(value, NULL, 16));
+            wprintf(L"Setting Pid=0x%x\n", ProtocolSettings.Pid);
         }
         else if (StringUtil::comparecsi(tag, "USAGEPAGE"))
         {
             ProtocolSettings.UsagePage = static_cast<UINT16>(strtoul(value, NULL, 16));
+            wprintf(L"Setting UsagePage=0x%x\n", ProtocolSettings.UsagePage);
         }
         else if (StringUtil::comparecsi(tag, "USAGECOLLECTION"))
         {
             ProtocolSettings.UsageTlc = static_cast<UINT16>(strtoul(value, NULL, 16));
+            wprintf(L"Setting UsageTlc=0x%x\n", ProtocolSettings.UsageTlc);
         }
         else if (StringUtil::comparecsi(tag, "VERSION_FEATURE_USAGE"))
         {
             ProtocolSettings.Reports[FwUpdateCfu::FwUpdateVersion].Usage = static_cast<UINT16>(strtoul(value, NULL, 16));
             ProtocolSettings.Reports[FwUpdateCfu::FwUpdateVersion].inOutFeature = HidP_Feature;
             ProtocolSettings.Reports[FwUpdateCfu::FwUpdateVersion].size = 60; //bytes
+            wprintf(L"Setting FwUpdateVersion.Usage=0x%x\n", ProtocolSettings.Reports[FwUpdateCfu::FwUpdateVersion].Usage);
         }
         else if (StringUtil::comparecsi(tag, "CONTENT_OUTPUT_USAGE"))
         {
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateContent].Usage = static_cast<UINT16>(strtoul(value, NULL, 16));
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateContent].inOutFeature = HidP_Output;
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateContent].size = 60; //bytes
+            wprintf(L"Setting FWUpdateContent.Usage=0x%x\n", ProtocolSettings.Reports[FwUpdateCfu::FWUpdateContent].Usage);
         }
         else if (StringUtil::comparecsi(tag, "CONTENT_RESPONSE_INPUT_USAGE"))
         {
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateContentResponse].Usage = static_cast<UINT16>(strtoul(value, NULL, 16));
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateContentResponse].inOutFeature = HidP_Input;
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateContentResponse].size = 16; //bytes
+            wprintf(L"Setting FWUpdateContentResponse.Usage=0x%x\n", ProtocolSettings.Reports[FwUpdateCfu::FWUpdateContentResponse].Usage);
         }
         else if (StringUtil::comparecsi(tag, "OFFER_OUTPUT_USAGE"))
         {
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateOffer].Usage = static_cast<UINT16>(strtoul(value, NULL, 16));
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateOffer].inOutFeature = HidP_Output;
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateOffer].size = 16; //bytes
+            wprintf(L"Setting FWUpdateOffer.Usage=0x%x\n", ProtocolSettings.Reports[FwUpdateCfu::FWUpdateOffer].Usage);
         }
         else if (StringUtil::comparecsi(tag, "OFFER_RESPONSE_INPUT_USAGE"))
         {
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateOfferResponse].Usage = static_cast<UINT16>(strtoul(value, NULL, 16));
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateOfferResponse].inOutFeature = HidP_Input;
             ProtocolSettings.Reports[FwUpdateCfu::FWUpdateOfferResponse].size = 16; //bytes
+            wprintf(L"Setting FWUpdateOfferResponse.Usage=0x%x\n", ProtocolSettings.Reports[FwUpdateCfu::FWUpdateOfferResponse].Usage);
         }
     }
     configStream.close();

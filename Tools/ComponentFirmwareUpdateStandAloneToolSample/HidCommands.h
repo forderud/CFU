@@ -129,7 +129,7 @@ public:
         BOOL fSucceeded = FALSE;
 
 #if defined(_DEBUG)
-        wprintf(L"HidD_SetOutputReport of reportId: %d length: %d\n", 
+        wprintf(L"HidD_SetOutputReport of reportId: 0x%x length: %d\n", 
                 reportBuffer[0], reportLength);
 #endif
         DWORD bytesWritten = 0;
@@ -137,12 +137,12 @@ public:
         if (fSucceeded)
         {
 #if defined(_DEBUG)
-            printf("HidD_SetOutputReport %d %d\n", reportBuffer[0], reportLength);
+            printf("HidD_SetOutputReport 0x%x %d\n", reportBuffer[0], reportLength);
 #endif
         }
         else
         {
-            printf("error HidD_SetOutputReport %d: %s\n", 
+            printf("error HidD_SetOutputReport 0x%x: %s\n", 
                     GetLastError(), GetLastErrorAsString().c_str());
         }
         return fSucceeded;
@@ -465,7 +465,7 @@ public:
         }
 
 #if defined(_DEBUG)
-        printf("grabbing usage %X, type %d from collection of %d\n", 
+        printf("grabbing usage 0x%X, type %d from collection of %d\n", 
                 ReportSettings.Usage, ReportSettings.inOutFeature, capCount);
 #endif
         status = HidP_GetSpecificValueCaps(
@@ -478,7 +478,7 @@ public:
             device.PreparsedData);
         if (!NT_SUCCESS(status) || (capCount == 0))
         {
-            printf("failed grabbing usage %X, type %d error: %x\n", 
+            printf("failed grabbing usage 0x%X, type %d error: %x\n", 
                     ReportSettings.Usage, ReportSettings.inOutFeature, status);
             goto Exit;
         }

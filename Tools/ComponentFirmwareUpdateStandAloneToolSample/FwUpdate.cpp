@@ -143,6 +143,8 @@ Return Value:
         pInterface += (wcslen(pInterface) + 1);
     }
 
+    wprintf(L"\n\nCompleted scanning all HID devices.\n");
+
     if (VectorInterfaces.size() != 0)
     {
         hr = S_OK;
@@ -248,6 +250,7 @@ Return Value:
     // Filter out hits for UsagePage
     if (device.Caps.UsagePage != ProtocolSettings.UsagePage)
     {
+        wprintf(L"UsagePage mismatch: %i doesn't match %i\n", device.Caps.UsagePage, ProtocolSettings.UsagePage);
         hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
         goto Exit;
     }
@@ -255,6 +258,7 @@ Return Value:
     // Filter out hits for Usage Top Level Collection if set and not matched
     if (ProtocolSettings.UsageTlc != 0 && device.Caps.Usage != ProtocolSettings.UsageTlc)
     {
+        wprintf(L"UsageTlc mismatch: %i doesn't match %i\n", device.Caps.Usage, ProtocolSettings.UsageTlc);
         hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
         goto Exit;
     }
@@ -264,6 +268,8 @@ Return Value:
         hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
         goto Exit;
     }
+
+    wprintf(L".\n");
 
     // Query device for "FeatureVersion" usage. 
     // If supported, get the version and return success.
@@ -426,6 +432,7 @@ Return Value:
         wprintf(L"Error opening offerPath aborting FW Update using \"%s\"\n", OfferPath);
         goto Exit;
     }
+    wprintf(L"FW offer file opened.\n");
 
     char readBuff[16] = { 0 };
     // read data as a block:
@@ -440,6 +447,7 @@ Return Value:
         wprintf(L"Error opening filepath aborting FW Update: \"%s\"\n", SrecBinPath);
         goto Exit;
     }
+    wprintf(L"FW payload file opened.\n");
     
     HidReportIdInfo report = ProtocolSettings.Reports[FWUpdateOffer];
     UINT32 reportLength = report.size + 1;
@@ -449,6 +457,7 @@ Return Value:
     offerDataUnion.offerData.componentInfo.forceIgnoreVersion = ForceIgnoreVersion;
     memcpy(reportBuffer, &offerDataUnion, sizeof(offerDataUnion));
 
+    wprintf(L"Sending offer report...\n");
     if (HidCommands::SetOutputReport(deviceWrite, reportBuffer, reportLength))
     {
         wprintf(L"SetOutputReport for Offer:\n"
