@@ -22,6 +22,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DmfU", "..\..\DMF\Dmf\Solut
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualDeviceFirmwareUpdateExtensionPackage", "VirtualDeviceFirmwareUpdateExtensionPackage .vcxproj", "{3093ABE5-504E-46B7-8A95-9DD5FF035697}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DmfUModules.Library.Tests", "..\..\DMF\Dmf\Solution\DmfUModules.Library.Tests\DmfUModules.Library.Tests.vcxproj", "{2F16597F-C98B-45EB-9DCF-F69C6993301D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -104,6 +106,24 @@ Global
 		{3093ABE5-504E-46B7-8A95-9DD5FF035697}.Release|Win32.Build.0 = Release|Win32
 		{3093ABE5-504E-46B7-8A95-9DD5FF035697}.Release|x64.ActiveCfg = Release|x64
 		{3093ABE5-504E-46B7-8A95-9DD5FF035697}.Release|x64.Build.0 = Release|x64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|ARM64.Build.0 = Debug|ARM64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|Win32.Build.0 = Debug|Win32
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|Win32.Deploy.0 = Debug|Win32
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|x64.ActiveCfg = Debug|x64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|x64.Build.0 = Debug|x64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Debug|x64.Deploy.0 = Debug|x64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|ARM64.ActiveCfg = Release|ARM64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|ARM64.Build.0 = Release|ARM64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|ARM64.Deploy.0 = Release|ARM64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|Win32.ActiveCfg = Release|Win32
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|Win32.Build.0 = Release|Win32
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|Win32.Deploy.0 = Release|Win32
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|x64.ActiveCfg = Release|x64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|x64.Build.0 = Release|x64
+		{2F16597F-C98B-45EB-9DCF-F69C6993301D}.Release|x64.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
