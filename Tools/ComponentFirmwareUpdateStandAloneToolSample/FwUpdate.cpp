@@ -182,37 +182,7 @@ Return Value:
     NTSTATUS   status;
     HRESULT    hr = S_OK;
     device.hDevice = INVALID_HANDLE_VALUE;
-    
-    // Check that the VID/PID matches.
-    wchar_t vidPidFilterString[256] = { 0 };
-    memset(&VerReport, 0, sizeof(VerReport));
-
-
-    // Filter on both if both set
-    if (ProtocolSettings.Vid && ProtocolSettings.Pid) 
-    {
-        swprintf(vidPidFilterString, 256, L"VID_%04X&PID_%04X", 
-                 ProtocolSettings.Vid, ProtocolSettings.Pid);
-        if (!wcsstr(DevicePath, vidPidFilterString))
-        {
-            // The device found doesn't match the vid and pid
-            //wprintf(L"The device found does not match the VID/PID\n");
-            hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
-            goto Exit;
-
-        }
-    }
-    // Filter on vid only (vid is mandatory)
-    else
-    {
-        swprintf(vidPidFilterString, 256, L"VID_%04X", ProtocolSettings.Vid);
-        if (!wcsstr(DevicePath, vidPidFilterString))
-        {
-            // The device found doesn't match the vid
-            hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
-            goto Exit;
-        }
-    }
+    HIDD_ATTRIBUTES attr = { 0 };
 
     // Open a handle to the device.
     device.hDevice = CreateFileW(
@@ -228,6 +198,33 @@ Return Value:
         wprintf(L"INVALID_HANDLE_VALUE %s", DevicePath);
         hr = HRESULT_FROM_WIN32(GetLastError());
         goto Exit;
+    }
+
+    if (!HidD_GetAttributes(device.hDevice, &attr)) {
+        hr = HRESULT_FROM_WIN32(GetLastError());
+        goto Exit;
+    }
+    // Filter on both if both set
+    if (ProtocolSettings.Vid && ProtocolSettings.Pid)
+    {
+        if ((attr.VendorID != ProtocolSettings.Vid) || (attr.ProductID != ProtocolSettings.Pid))
+        {
+            // The device found doesn't match the vid and pid
+            //wprintf(L"The device found does not match the VID/PID\n");
+            hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
+            goto Exit;
+
+        }
+    }
+    // Filter on vid only (vid is mandatory)
+    else
+    {
+        if (attr.VendorID != ProtocolSettings.Vid)
+        {
+            // The device found doesn't match the vid
+            hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
+            goto Exit;
+        }
     }
 
     // Try to get the device's preparsed HID data.
