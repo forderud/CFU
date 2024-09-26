@@ -209,6 +209,7 @@ Return Value:
     {
         if ((attr.VendorID != ProtocolSettings.Vid) || (attr.ProductID != ProtocolSettings.Pid))
         {
+            wprintf(L"VID or PID mismatch: VID_%x PID_%x doesn't match VID_%x PID_%x\n", attr.VendorID, attr.ProductID, ProtocolSettings.Vid, ProtocolSettings.Pid);
             // The device found doesn't match the vid and pid
             //wprintf(L"The device found does not match the VID/PID\n");
             hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
@@ -221,6 +222,7 @@ Return Value:
     {
         if (attr.VendorID != ProtocolSettings.Vid)
         {
+            wprintf(L"VID mismatch: VID_%x doesn't match VID_%x\n", attr.VendorID, ProtocolSettings.Vid);
             // The device found doesn't match the vid
             hr = HRESULT_FROM_WIN32(ERROR_NOT_FOUND);
             goto Exit;
