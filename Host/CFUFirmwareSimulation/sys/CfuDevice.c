@@ -49,15 +49,17 @@ Return Value:
     device = (WDFDEVICE) VhfClientContext;
     deviceContext = DeviceContextGet(device);
 
-    TraceEvents(TRACE_LEVEL_VERBOSE, TRACE_DEVICE, "CfuDevice_WriteReport");
+    TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DEVICE, "CfuDevice_WriteReport entry with reportBufferLen=0x%x", HidTransferPacket->reportBufferLen);
 
     if (HidTransferPacket->reportBufferLen < (sizeof(OUTPUT_REPORT_LENGTH) + REPORT_ID_LENGTH))
     {
+        TraceEvents(TRACE_LEVEL_ERROR, TRACE_DEVICE, "too small reportBufferLen=%i", HidTransferPacket->reportBufferLen);
         goto Exit;
     }
 
     if (HidTransferPacket->reportId != REPORT_ID_PAYLOAD_OUTPUT && HidTransferPacket->reportId != REPORT_ID_OFFER_OUTPUT)
     {
+        TraceEvents(TRACE_LEVEL_ERROR, TRACE_DEVICE, "incorrect reportId=0x%x", HidTransferPacket->reportBufferLen);
         goto Exit;
     }
 
@@ -290,6 +292,7 @@ Return Value:
     }
 
     ntStatus = STATUS_SUCCESS;
+    TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DEVICE, "CfuDevice_GetFeatureReport send GET_FWVERSION_RESPONSE.");
 
     GET_FWVERSION_RESPONSE firmwareVersionResponse = { 0 };
     firmwareVersionResponse.ReportId = HidTransferPacket->reportId;
