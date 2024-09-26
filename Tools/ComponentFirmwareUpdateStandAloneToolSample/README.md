@@ -16,8 +16,8 @@ It requires a protocol settings text csv file to be passed as an argument.
 &nbsp;&nbsp;&nbsp;&nbsp;USAGEPAGE,0xFA00,#mandatory (each vendor must maintain their own Vendor defined Utility Page collections)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;USAGECOLLECTION,0xF5,#optional (if you don't specify, the tool will attempt to talk to all devices with matching UsagePage/Vid/Pid on the usages specified below)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;VERSION_FEATURE_USAGE,0x42,#mandatory for all procedures<br>
-&nbsp;&nbsp;&nbsp;&nbsp;CONTENT_OUTPUT_USAGE,0x61,#mandatory for fwUpdate procedure<br>
-&nbsp;&nbsp;&nbsp;&nbsp;CONTENT_RESPONSE_INPUT_USAGE,0x66,#mandatory for fwUpdate procedure<br>
-&nbsp;&nbsp;&nbsp;&nbsp;OFFER_OUTPUT_USAGE,0x8e,#mandatory for fwUpdate procedure<br>
-&nbsp;&nbsp;&nbsp;&nbsp;OFFER_RESPONSE_INPUT_USAGE,0x8a,#mandatory for fwUpdate procedure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;CONTENT_OUTPUT_USAGE,0x31,#mandatory for fwUpdate procedure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;CONTENT_RESPONSE_INPUT_USAGE,0x26,#mandatory for fwUpdate procedure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OFFER_OUTPUT_USAGE,0x1e,#mandatory for fwUpdate procedure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;OFFER_RESPONSE_INPUT_USAGE,0x1a,#mandatory for fwUpdate procedure<br>
 
