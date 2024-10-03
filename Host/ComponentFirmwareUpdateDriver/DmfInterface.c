@@ -252,38 +252,6 @@ Return Value:
     ntStatus = DMF_ComponentFirmwareUpdate_Start(deviceContext->DmfModuleComponentFirmwareUpdate);
     if (!NT_SUCCESS(ntStatus))
     {
-        NTSTATUS ntStatus2;
-        WDFMEMORY deviceHardwareIdentifierMemory;
-        PWSTR deviceHardwareIdentifier;
-
-        // Get the Device's HardwareID.
-        //
-        deviceHardwareIdentifierMemory = WDF_NO_HANDLE;
-        deviceHardwareIdentifier = L"";
-        ntStatus2 = WdfDeviceAllocAndQueryProperty(device,
-                                                   DevicePropertyHardwareID, 
-                                                   PagedPool, 
-                                                   WDF_NO_OBJECT_ATTRIBUTES, 
-                                                   &deviceHardwareIdentifierMemory);
-        if (NT_SUCCESS(ntStatus2))
-        {
-            deviceHardwareIdentifier = (PWSTR) WdfMemoryGetBuffer(deviceHardwareIdentifierMemory,
-                                                                  NULL);
-        }
-
-        PWCHAR formatStrings[] = { L"HardwareId=%s", L"ntStatus=0x%x" };
-
-        // Report the failure in Event Log.
-        //
-        DMF_Utility_EventLogEntryWriteUserMode(EVENTLOG_PROVIDER_NAME,
-                                               EVENTLOG_ERROR_TYPE,
-                                               EVENTLOG_MESSAGE_PROTOCOL_START_FAIL,
-                                               ARRAYSIZE(formatStrings),
-                                               formatStrings,
-                                               ARRAYSIZE(formatStrings),
-                                               deviceHardwareIdentifier,
-                                               ntStatus);
-
         // Failure in starting the protocol is non-recoverable.
         // Report the failure to framework and let it attempt to restart the driver.
         // Note: This may result in banged out devnode.

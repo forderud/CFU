@@ -122,14 +122,6 @@ Return Value:
     //
     if (numberOfSubKeys == 0)
     {
-        // Report the warning in Event Log.
-        //
-        DMF_Utility_EventLogEntryWriteUserMode(EVENTLOG_PROVIDER_NAME,
-                                               EVENTLOG_WARNING_TYPE,
-                                               EVENTLOG_MESSAGE_NO_FIRMWARE_INFORMATION,
-                                               0,
-                                               NULL,
-                                               0);
         goto Exit;
     }
 
@@ -673,14 +665,6 @@ Return Value:
                     Device, 
                     ntStatus);
 
-        // Report the warning in Event Log.
-        //
-        DMF_Utility_EventLogEntryWriteUserMode(EVENTLOG_PROVIDER_NAME,
-                                               EVENTLOG_WARNING_TYPE,
-                                               EVENTLOG_MESSAGE_NO_PROTOCOL_OR_TRANSPORT_INFORMATION,
-                                               0,
-                                               NULL,
-                                               0);
         goto Exit;
     }
 
