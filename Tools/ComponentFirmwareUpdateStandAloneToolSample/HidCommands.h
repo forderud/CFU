@@ -132,7 +132,8 @@ public:
         wprintf(L"HidD_SetOutputReport of reportId: %d length: %d\n", 
                 reportBuffer[0], reportLength);
 #endif
-        fSucceeded = HidD_SetOutputReport(Device.hDevice, reportBuffer, reportLength);
+        DWORD bytesWritten = 0;
+        fSucceeded = WriteFile(Device.hDevice, reportBuffer, reportLength, &bytesWritten, NULL);
         if (fSucceeded)
         {
 #if defined(_DEBUG)
