@@ -147,23 +147,6 @@ public:
         return fSucceeded;
     }
 
-    static BOOL GetInputReport(
-        _In_ HID_DEVICE& Device,
-        _Out_ char* reportBuffer,
-        _In_ UINT32 reportLength)
-    {
-        BOOL fSucceeded = FALSE;
-
-        fSucceeded = HidD_GetInputReport(Device.hDevice, reportBuffer, reportLength);
-        if (!fSucceeded)
-        {
-            printf("error sending HidD_GetInputReport %d: %s\n", 
-                    GetLastError(), 
-                    GetLastErrorAsString().c_str());
-        }
-        return fSucceeded;
-    }
-
     static BOOL GetFeatureReport(
         _In_ HID_DEVICE& Device,
         _In_ USAGE UsagePage,
