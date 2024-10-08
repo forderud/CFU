@@ -17,4 +17,10 @@ Inf2cat.exe /driver:. /os:"10_x64"
 :: Sign CAT file
 signtool.exe sign /a /fd sha256 CfuVirtualHidDeviceFwUpdate.cat
 
+:: Package driver in CAB
+makecab /f CfuVirtualHidDeviceFwUpdate.ddf
+
+:: Sign CAB archive
+signtool.exe sign /a /fd sha256 disk1\CfuVirtualHidDeviceFwUpdate.cab
+
 ::pause
