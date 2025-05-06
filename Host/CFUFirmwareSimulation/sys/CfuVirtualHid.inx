@@ -66,5 +66,5 @@ ServiceBinary  = %13%\CfuVirtualHid.sys
 SPSVCINST_ASSOCSERVICE= 0x00000002
 ManufacturerName="Surface"
 DiskName = "CfuVirtualHid Installation Disk"
-CfuVirtualHid.DeviceDesc = "CfuVirtualHid Device"
+CfuVirtualHid.DeviceDesc = "My fancy device"
 CfuVirtualHid.SVCDESC = "CfuVirtualHid Service"
